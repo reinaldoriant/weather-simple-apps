@@ -13,4 +13,5 @@
     <string name="tvWind">Wind</string>
     <string name="tvSunset">Sunset</string>
     <string name="tvSunrise">Sunrise</string>
+    <string name="errorText">Something went wrong</string>
 </resources>
