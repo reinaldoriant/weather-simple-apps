@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">WeatherApps</string>
+    <string name="tvLocation">Location</string>
+    <string name="tvUpdateAt">Update At</string>
+    <string name="tvStatus">Clear Sky</string>
+    <string name="tvTemps">37℃</string>
+    <string name="tvMinTemp">Min Temp : </string>
+    <string name="tvMaxTemp">Max Temp : </string>
+    <string name="tvRuangAldo">Ruang Aldo</string>
+    <string name="tvCreated_by">Created By</string>
+    <string name="tvHumidity">Humidity</string>
+    <string name="tvPressure">Pressure</string>
+    <string name="tvWind">Wind</string>
+    <string name="tvSunset">Sunset</string>
+    <string name="tvSunrise">Sunrise</string>
 </resources>
