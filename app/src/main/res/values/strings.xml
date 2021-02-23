@@ -6,7 +6,7 @@
     <string name="tvTemps">37℃</string>
     <string name="tvMinTemp">Min Temp : </string>
     <string name="tvMaxTemp">Max Temp : </string>
-    <string name="tvRuangAldo">Ruang Aldo</string>
+    <string name="tvCreator">Ruang Aldo</string>
     <string name="tvCreated_by">Created By</string>
     <string name="tvHumidity">Humidity</string>
     <string name="tvPressure">Pressure</string>
