@@ -3,7 +3,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class WeatherInfoMsg(
+data class InfoMsg(
     //Update time
     @Json(name = "dt")
     val dt: Int,

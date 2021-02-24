@@ -2,16 +2,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.ruangaldo.weatherapps.ui.WeatherViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient_bg"
         tools:context=".ui.WeatherActivity">
+
         <TextView
             android:id="@+id/tv_Location"
             android:layout_width="wrap_content"
@@ -20,6 +24,7 @@
             android:text="@string/tvLocation"
             android:textColor="@color/white"
             android:textSize="24sp"
+
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -82,9 +87,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:dataTemp="@{viewModel.dataTemp}"
+
                 android:textColor="@color/white"
                 android:textSize="90sp"
+                app:dataTemp="@{viewModel.dataTemp}"
                 app:layout_constraintLeft_toLeftOf="@id/tvStatus"
                 app:layout_constraintRight_toRightOf="@id/tvStatus"
                 app:layout_constraintTop_toBottomOf="@id/tvStatus" />
@@ -107,6 +113,7 @@
                 android:layout_marginEnd="64dp"
                 android:text="@string/tvMinTemp"
                 android:textColor="@color/white"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,8 +121,11 @@
                 android:id="@+id/tvMinTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="32"
                 android:textColor="@color/white"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/tvMin"
                 app:layout_constraintStart_toEndOf="@id/tvMin"
                 app:layout_constraintTop_toTopOf="@id/tvMin" />
@@ -131,8 +141,11 @@
                 android:id="@+id/tvMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/tvMaxTemp"
                 android:textColor="@color/white"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/tvMaxTemp"
                 app:layout_constraintEnd_toStartOf="@id/tvMaxTemp"
                 app:layout_constraintTop_toTopOf="@id/tvMaxTemp" />
@@ -145,6 +158,7 @@
                 android:layout_marginEnd="64dp"
                 android:text="38"
                 android:textColor="@color/white"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/tvMax"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvMax" />
@@ -184,8 +198,7 @@
                     android:src="@drawable/ic_sunrise"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Space
                     android:id="@+id/spaceContDet1"
@@ -210,7 +223,7 @@
                     android:id="@+id/tvSunrise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5:30am"
+                    app:dataSunrise="@{viewModel.dataSunrise}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/Sunrise"
@@ -275,7 +288,7 @@
                     android:id="@+id/tvSunset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="17:30am"
+                    app:dataSunset="@{viewModel.dataSunset}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/Sunset"
@@ -341,7 +354,7 @@
                     android:id="@+id/tvWind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3.1"
+                    app:dataWind="@{viewModel.dataWind}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/wind"
@@ -413,7 +426,7 @@
                     android:id="@+id/tvPressure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1016"
+                    app:dataPressure="@{viewModel.dataPressure}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/Pressure"
@@ -478,7 +491,7 @@
                     android:id="@+id/tvHumidity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="54"
+                    app:dataHumidity="@{viewModel.dataHumidity}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/Humidity"

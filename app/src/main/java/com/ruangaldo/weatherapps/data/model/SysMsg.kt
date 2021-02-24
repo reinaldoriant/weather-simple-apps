@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class WeatherSysMsg(
+data class SysMsg(
     @Json(name = "sys")
     val sys: Sys
 ) {
@@ -14,9 +14,9 @@ data class WeatherSysMsg(
         @Json(name = "id")
         val id: Int,
         @Json(name = "sunrise")
-        val sunrise: Int,
+        val sunrise: Long,
         @Json(name = "sunset")
-        val sunset: Int,
+        val sunset: Long,
         @Json(name = "type")
         val type: Int
     )

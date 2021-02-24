@@ -14,7 +14,14 @@ class WeatherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_weather)
         binding.viewModel=weatherViewModel
+        binding.lifecycleOwner = this
+        runViewModel()
         super.onCreate(savedInstanceState)
+
+    }
+    private fun runViewModel(){
         weatherViewModel.getDataMain()
+        weatherViewModel.getDataSys()
+        weatherViewModel.getDataWind()
     }
 }

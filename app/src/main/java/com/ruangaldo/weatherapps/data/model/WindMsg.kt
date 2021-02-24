@@ -4,10 +4,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class WeatherWindMsg(
+data class WindMsg(
     @Json(name = "wind")
     val wind: Wind
-) {
+){
     data class Wind(
         @Json(name = "deg")
         val deg: Int,
@@ -15,3 +15,4 @@ data class WeatherWindMsg(
         val speed: Double
     )
 }
+

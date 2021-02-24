@@ -1,7 +1,7 @@
 package com.ruangaldo.weatherapps.data.repository
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
+
 import com.ruangaldo.weatherapps.data.model.*
 import com.ruangaldo.weatherapps.data.remote.ApiService
 import com.ruangaldo.weatherapps.utils.OnSingleResponse
@@ -13,14 +13,43 @@ class WeatherRepoImp(private val service: ApiService) : WeatherRepo {
     private var disposable: Disposable? = null
     private val city = "1642911"
     private val key = "b794698a46abe2ac24c44a69ad0ef1ca"
-
-    override fun getDataMain(listener: OnSingleResponse<String>) {
-        disposable = service.getWeatherMain(city, key)
+    override fun getDataSys(listener: OnSingleResponse<SysMsg>) {
+        disposable = service.getSys(city, key)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                listener.onSuccess(it.main.temp.toString())
+                listener.onSuccess(it)
+                Log.e("Test Data", it.sys.sunrise.toString())
+            }, {
+                Log.e("Error", it.toString())
+                it.printStackTrace()
+            })
+    }
+
+    override fun getDataMain(listener: OnSingleResponse<MainMsg>) {
+        disposable = service.getMain(city, key)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                listener.onSuccess(it)
                 Log.e("Test Data", it.main.temp.toString())
+            }, {
+                Log.e("Error", it.toString())
+                it.printStackTrace()
+            })
+    }
+
+    override fun getDataInfo(listener: OnSingleResponse<SysMsg>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getDataWind(listener: OnSingleResponse<WindMsg>) {
+        disposable = service.getWind(city, key)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                listener.onSuccess(it)
+                Log.e("Test Data", it.wind.speed.toString())
             }, {
                 Log.e("Error", it.toString())
                 it.printStackTrace()
