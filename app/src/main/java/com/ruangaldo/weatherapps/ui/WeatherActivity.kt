@@ -15,7 +15,6 @@ class WeatherActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_weather)
         binding.viewModel=weatherViewModel
         super.onCreate(savedInstanceState)
-        weatherViewModel.processDataMain()
-        weatherViewModel.getDataTemp()
+        weatherViewModel.getDataMain()
     }
 }

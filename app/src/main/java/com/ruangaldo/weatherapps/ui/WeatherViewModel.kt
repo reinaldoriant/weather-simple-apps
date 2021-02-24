@@ -1,19 +1,24 @@
 package com.ruangaldo.weatherapps.ui
 
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ruangaldo.weatherapps.data.repository.WeatherRepository
+import com.ruangaldo.weatherapps.data.repository.WeatherRepoImp
+import com.ruangaldo.weatherapps.utils.OnSingleResponse
 
-class WeatherViewModel(private var repo: WeatherRepository) : ViewModel() {
+class WeatherViewModel(private var repo: WeatherRepoImp) : ViewModel() {
     val dataTemp = MutableLiveData<String>()
-    fun processDataMain()=repo.getWeatherMain()
-    fun getDataTemp(){
-        val data=repo.dataMain.value
-        Log.e("Cek",data.toString())
-       dataTemp.value= repo.dataMain.value
+
+    fun getDataMain(){
+        repo.getDataMain(object :OnSingleResponse<String>{
+            override fun onSuccess(data: String?) {
+                dataTemp.value = data
+            }
+            override fun onFailure(error: Error) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
 }
