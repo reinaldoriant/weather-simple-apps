@@ -10,22 +10,20 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 object ApiModule {
     private const val BASE_URL = "https://api.openweathermap.org"
-    val moshi = Moshi.Builder()
+    private val builder: Moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
 
     val service: ApiService by lazy {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addConverterFactory(MoshiConverterFactory.create(builder))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(client)
             .build()
         retrofit.create(ApiService::class.java)
     }
- /*  private val moshi = Moshi.Builder()
-        .add(MoshiConverterFactory.create())
-        .build()*/
+
     private val logging: HttpLoggingInterceptor
         get() {
             val httpLoggingInterceptor = HttpLoggingInterceptor()

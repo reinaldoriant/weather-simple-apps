@@ -1,4 +1,6 @@
 package com.ruangaldo.weatherapps.data.model
+/*
+
 
 
 import com.squareup.moshi.Json
@@ -22,8 +24,10 @@ data class WeatherMsg(
     val main: Main,
     @Json(name = "name")
     val name: String,
-  /*  @Json(name = "rain")
-    val rain: Rain,*/
+  */
+/*  @Json(name = "rain")
+    val rain: Rain,*//*
+
     @Json(name = "sys")
     val sys: Sys,
     @Json(name = "timezone")
@@ -62,10 +66,12 @@ data class WeatherMsg(
         val tempMin: Double
     )
 
-  /*  data class Rain(
+  */
+/*  data class Rain(
         @Json(name = "1h")
         val h: Double
-    )*/
+    )*//*
+
 
     data class Sys(
         @Json(name = "country")
@@ -97,4 +103,4 @@ data class WeatherMsg(
         @Json(name = "speed")
         val speed: Double
     )
-}
+}*/
