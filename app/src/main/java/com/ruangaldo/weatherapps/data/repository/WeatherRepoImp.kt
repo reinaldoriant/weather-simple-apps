@@ -1,7 +1,6 @@
 package com.ruangaldo.weatherapps.data.repository
 
 import android.util.Log
-
 import com.ruangaldo.weatherapps.data.model.*
 import com.ruangaldo.weatherapps.data.remote.ApiService
 import com.ruangaldo.weatherapps.utils.OnSingleResponse
@@ -39,8 +38,17 @@ class WeatherRepoImp(private val service: ApiService) : WeatherRepo {
             })
     }
 
-    override fun getDataInfo(listener: OnSingleResponse<SysMsg>) {
-        TODO("Not yet implemented")
+    override fun getDataInfo(listener: OnSingleResponse<InfoMsg>) {
+        disposable = service.getInfo(city, key)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                listener.onSuccess(it)
+                Log.e("Test Data", it.dt.toString())
+            }, {
+                Log.e("Error", it.toString())
+                it.printStackTrace()
+            })
     }
 
     override fun getDataWind(listener: OnSingleResponse<WindMsg>) {
@@ -50,6 +58,19 @@ class WeatherRepoImp(private val service: ApiService) : WeatherRepo {
             .subscribe({
                 listener.onSuccess(it)
                 Log.e("Test Data", it.wind.speed.toString())
+            }, {
+                Log.e("Error", it.toString())
+                it.printStackTrace()
+            })
+    }
+
+    override fun getDataWeather(listener: OnSingleResponse<WeatherMsg>) {
+        disposable = service.getWeather(city, key)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                listener.onSuccess(it)
+                Log.e("Test Data", it.weather[1].description)
             }, {
                 Log.e("Error", it.toString())
                 it.printStackTrace()

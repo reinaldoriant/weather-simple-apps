@@ -16,47 +16,94 @@
         android:background="@drawable/gradient_bg"
         tools:context=".ui.WeatherActivity">
 
-        <TextView
-            android:id="@+id/tv_Location"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cont_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text="@string/tvLocation"
-            android:textColor="@color/white"
-            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tvCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:dataCity="@{viewModel.dataCity}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_UpdateAt"
+            <TextView
+                android:id="@+id/tvCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:dataCountry="@{viewModel.dataCountry}"
+                app:layout_constraintBottom_toBottomOf="@id/tvCity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvCity"
+                app:layout_constraintTop_toTopOf="@id/tvCity" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cont_updateAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/tvUpdateAt"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@id/tv_Location"
-            app:layout_constraintStart_toStartOf="@id/tv_Location"
-            app:layout_constraintTop_toBottomOf="@id/tv_Location" />
+            app:layout_constraintEnd_toEndOf="@+id/cont_location"
+            app:layout_constraintStart_toStartOf="@+id/cont_location"
+            app:layout_constraintTop_toBottomOf="@id/cont_location">
+
+            <TextView
+                android:id="@+id/UpdateAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:text="@string/tvUpdateAt"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvUpdateAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:dataUpdateAt="@{viewModel.dataUpdateAt}"
+                app:layout_constraintBottom_toBottomOf="@+id/UpdateAt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/UpdateAt"
+                app:layout_constraintTop_toTopOf="@+id/UpdateAt" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cont_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_UpdateAt"
-            app:layout_constraintStart_toStartOf="@id/tv_UpdateAt"
-            app:layout_constraintTop_toBottomOf="@id/tv_UpdateAt">
+            app:layout_constraintEnd_toEndOf="@+id/cont_updateAt"
+            app:layout_constraintStart_toStartOf="@+id/cont_updateAt"
+            app:layout_constraintTop_toBottomOf="@id/cont_updateAt">
 
             <TextView
                 android:id="@+id/tvStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tvStatus"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                app:dataStatus="@{viewModel.dataStatus}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -87,9 +134,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-
+                android:fontFamily="sans-serif-thin"
                 android:textColor="@color/white"
-                android:textSize="90sp"
+                android:textSize="100sp"
                 app:dataTemp="@{viewModel.dataTemp}"
                 app:layout_constraintLeft_toLeftOf="@id/tvStatus"
                 app:layout_constraintRight_toRightOf="@id/tvStatus"
@@ -101,67 +148,91 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/cont_status"
-            app:layout_constraintStart_toStartOf="@+id/cont_status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cont_status">
 
-            <TextView
-                android:id="@+id/tvMin"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cont_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:layout_marginEnd="64dp"
-                android:text="@string/tvMinTemp"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/space_min_max"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tvMinTemp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="32"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@id/tvMin"
-                app:layout_constraintStart_toEndOf="@id/tvMin"
-                app:layout_constraintTop_toTopOf="@id/tvMin" />
+                <TextView
+                    android:id="@+id/tvMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/tvMinTemp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@id/tvMinTemp"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvMinTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:dataTempMin="@{viewModel.dataTempMin}"
+                    app:layout_constraintBottom_toBottomOf="@id/tvMin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvMin" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Space
                 android:id="@+id/space_min_max"
-                android:layout_width="16dp"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toStartOf="@id/tvMax"
-                app:layout_constraintStart_toEndOf="@id/tvMinTemp" />
-
-            <TextView
-                android:id="@+id/tvMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/tvMaxTemp"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@id/tvMaxTemp"
-                app:layout_constraintEnd_toStartOf="@id/tvMaxTemp"
-                app:layout_constraintTop_toTopOf="@id/tvMaxTemp" />
-
-            <TextView
-                android:id="@+id/tvMaxTemp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:layout_marginEnd="64dp"
-                android:text="38"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@id/tvMax"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvMax" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cont_max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/space_min_max"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvMax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/tvMaxTemp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvMaxTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:dataTempMax="@{viewModel.dataTempMax}"
+                    app:layout_constraintBottom_toBottomOf="@id/tvMax"
+                    app:layout_constraintStart_toEndOf="@id/tvMax"
+                    app:layout_constraintTop_toTopOf="@id/tvMax" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -223,9 +294,9 @@
                     android:id="@+id/tvSunrise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:dataSunrise="@{viewModel.dataSunrise}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
+                    app:dataSunrise="@{viewModel.dataSunrise}"
                     app:layout_constraintEnd_toEndOf="@+id/Sunrise"
                     app:layout_constraintStart_toStartOf="@+id/Sunrise"
                     app:layout_constraintTop_toBottomOf="@+id/Sunrise" />
@@ -288,9 +359,9 @@
                     android:id="@+id/tvSunset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:dataSunset="@{viewModel.dataSunset}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
+                    app:dataSunset="@{viewModel.dataSunset}"
                     app:layout_constraintEnd_toEndOf="@+id/Sunset"
                     app:layout_constraintStart_toStartOf="@+id/Sunset"
                     app:layout_constraintTop_toBottomOf="@+id/Sunset" />
@@ -354,9 +425,9 @@
                     android:id="@+id/tvWind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:dataWind="@{viewModel.dataWind}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
+                    app:dataWind="@{viewModel.dataWind}"
                     app:layout_constraintEnd_toEndOf="@+id/wind"
                     app:layout_constraintStart_toStartOf="@+id/wind"
                     app:layout_constraintTop_toBottomOf="@+id/wind" />
@@ -426,9 +497,9 @@
                     android:id="@+id/tvPressure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:dataPressure="@{viewModel.dataPressure}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
+                    app:dataPressure="@{viewModel.dataPressure}"
                     app:layout_constraintEnd_toEndOf="@+id/Pressure"
                     app:layout_constraintStart_toStartOf="@+id/Pressure"
                     app:layout_constraintTop_toBottomOf="@+id/Pressure" />
@@ -491,9 +562,9 @@
                     android:id="@+id/tvHumidity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:dataHumidity="@{viewModel.dataHumidity}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
+                    app:dataHumidity="@{viewModel.dataHumidity}"
                     app:layout_constraintEnd_toEndOf="@+id/Humidity"
                     app:layout_constraintStart_toStartOf="@+id/Humidity"
                     app:layout_constraintTop_toBottomOf="@+id/Humidity" />

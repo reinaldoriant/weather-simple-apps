@@ -2,9 +2,9 @@ package com.ruangaldo.weatherapps.utils
 
 import android.app.Application
 import android.content.Context
-import com.ruangaldo.weatherapps.data.di.apiModule
-import com.ruangaldo.weatherapps.data.di.repositoryModule
-import com.ruangaldo.weatherapps.data.di.uiModule
+import com.ruangaldo.weatherapps.di.apiModule
+import com.ruangaldo.weatherapps.di.repositoryModule
+import com.ruangaldo.weatherapps.di.uiModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.loadKoinModules

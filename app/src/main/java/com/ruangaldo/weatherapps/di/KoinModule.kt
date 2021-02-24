@@ -1,4 +1,4 @@
-package com.ruangaldo.weatherapps.data.di
+package com.ruangaldo.weatherapps.di
 
 import com.ruangaldo.weatherapps.data.remote.ApiModule
 import com.ruangaldo.weatherapps.data.repository.WeatherRepoImp

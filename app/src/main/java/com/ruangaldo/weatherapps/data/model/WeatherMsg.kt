@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class WeatherMsg(
     @Json(name = "weather")
-    val weather: Weather,
+    val weather:  List<Weather>,
 ) {
     data class Weather(
         @Json(name = "description")
@@ -18,6 +18,4 @@ data class WeatherMsg(
         @Json(name = "main")
         val main: String
     )
-
-
 }
