@@ -2,26 +2,20 @@ package com.ruangaldo.weatherapps.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
+import androidx.databinding.DataBindingUtil
 import com.ruangaldo.weatherapps.R
-import com.ruangaldo.weatherapps.data.remote.ApiModule
-import org.koin.android.ext.android.inject
+import com.ruangaldo.weatherapps.databinding.ActivityWeatherBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class WeatherActivity : AppCompatActivity() {
-
-    private val viewModel: WeatherViewModel by viewModel()
+    private lateinit var binding: ActivityWeatherBinding
+    private val weatherViewModel: WeatherViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_weather)
+        binding.viewModel=weatherViewModel
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_weather)
-        /*      val weatherViewModel: WeatherViewModel by viewModel()*/
-        val temp = findViewById<TextView>(R.id.tv_Temp)
-        viewModel.processDataMain()
-        viewModel.getDataMain().observe(this, {
-            temp.text = (it.temp.toString() + "\u2103")
-        }
-        )
+        weatherViewModel.processDataMain()
+        weatherViewModel.getDataTemp()
     }
 }

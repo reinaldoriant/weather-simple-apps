@@ -1,6 +1,7 @@
 package com.ruangaldo.weatherapps.data.repository
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ruangaldo.weatherapps.data.model.*
 import com.ruangaldo.weatherapps.data.remote.ApiService
@@ -12,18 +13,17 @@ class WeatherRepository(private val service: ApiService) {
     private var disposable: Disposable? = null
     private val city = "1642911"
     private val key = "b794698a46abe2ac24c44a69ad0ef1ca"
-    var dataMain = MutableLiveData<WeatherMainMsg.Main>()
+    var dataMain = MutableLiveData<String>()
     var dataSys = MutableLiveData<WeatherSysMsg.Sys>()
     var dataWind = MutableLiveData<WeatherWindMsg.Wind>()
     var dataWeather = MutableLiveData<List<WeatherWeatherMsg.Weather>>()
     var dataInfo = MutableLiveData<WeatherInfoMsg>()
-
     fun getWeatherMain() {
         disposable = service.getWeatherMain(city, key)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                dataMain.value = it.main
+                dataMain.value = it.main.temp.toString()
                 Log.e("Test Data", it.main.temp.toString())
             }, {
                 Log.e("Error", it.toString())

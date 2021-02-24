@@ -82,9 +82,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/tvTemps"
+                app:dataTemp="@{viewModel.dataTemp}"
                 android:textColor="@color/white"
-                android:textSize="90sp"
+                android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="@id/tvStatus"
                 app:layout_constraintRight_toRightOf="@id/tvStatus"
                 app:layout_constraintTop_toBottomOf="@id/tvStatus" />
