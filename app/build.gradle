@@ -75,5 +75,7 @@ dependencies {
     def koin_version="2.2.2"
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-android-viewmodel:$koin_version"
+    //library Timber Logger
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
 }

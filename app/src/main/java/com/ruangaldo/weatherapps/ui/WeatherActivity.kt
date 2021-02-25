@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.ruangaldo.weatherapps.R
 import com.ruangaldo.weatherapps.databinding.ActivityWeatherBinding
 import org.koin.android.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 
 class WeatherActivity : AppCompatActivity() {
@@ -17,9 +18,9 @@ class WeatherActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         runViewModel()
         super.onCreate(savedInstanceState)
-
     }
     private fun runViewModel(){
         weatherViewModel.getCurrentWeather()
+        Timber.i("View Model run success")
     }
 }

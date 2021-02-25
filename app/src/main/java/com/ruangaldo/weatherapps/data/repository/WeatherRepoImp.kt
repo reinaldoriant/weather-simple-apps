@@ -13,6 +13,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import androidx.lifecycle.LiveDataReactiveStreams
+import timber.log.Timber
 
 
 class WeatherRepoImp(private val service: ApiService, private val wtDao: WeatherDao) : WeatherRepo {
@@ -21,7 +22,7 @@ class WeatherRepoImp(private val service: ApiService, private val wtDao: Weather
     private val compositeDisposable = CompositeDisposable()
     private val city = "1642911"
     private val key = "b794698a46abe2ac24c44a69ad0ef1ca"
-    var dataArray = mutableListOf<Any>()
+
 
     override fun getCurrentWeather(listener: OnSingleResponse<CurrentWeatherMsg>) {
         disposable = service.getCurrentWeather(city, key)
@@ -29,19 +30,36 @@ class WeatherRepoImp(private val service: ApiService, private val wtDao: Weather
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 listener.onSuccess(it)
-                dataArray.add(it)
-                Log.e("Test Data", it.sys.sunrise.toString())
+                val dataField = WeatherEntity(
+                    14045,
+                    it.name,
+                    it.sys.country,
+                    it.dt,
+                    it.weather.first().main,
+                    it.main.temp,
+                    it.main.tempMin,
+                    it.main.tempMax,
+                    it.sys.sunrise,
+                    it.sys.sunset,
+                    it.wind.speed,
+                    it.main.pressure,
+                    it.main.humidity
+                )
+                insertDataLocal(dataField)
+                Timber.tag("Get from API").i(it.toString())
+                Timber.tag("Send to DB Local").i(dataField.toString())
             }, {
-                Log.e("Error", it.toString())
+                Timber.e(it.toString())
                 it.printStackTrace()
             })
     }
 
-    fun insertDataLocal(weatherEntity: WeatherEntity) {
+    private fun insertDataLocal(weatherEntity: WeatherEntity) {
         compositeDisposable.add(Observable.fromCallable { wtDao.insertData(weatherEntity) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe())
+        Timber.tag("Info Insert to DB Local").i(weatherEntity.toString())
     }
 
     fun getDataById(lastUpdate: Int): LiveData<WeatherEntity> {

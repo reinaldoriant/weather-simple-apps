@@ -3,10 +3,10 @@ package com.ruangaldo.weatherapps.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ruangaldo.weatherapps.data.local.WeatherEntity
-import com.ruangaldo.weatherapps.data.model.*
+import com.ruangaldo.weatherapps.data.model.CurrentWeatherMsg
 import com.ruangaldo.weatherapps.data.repository.WeatherRepoImp
 import com.ruangaldo.weatherapps.utils.OnSingleResponse
+import timber.log.Timber
 
 class WeatherViewModel(private var repo: WeatherRepoImp) : ViewModel() {
 
@@ -38,12 +38,15 @@ class WeatherViewModel(private var repo: WeatherRepoImp) : ViewModel() {
                 dataSunset.value = data.sys.sunset
                 dataCountry.value = data.sys.country
                 dataWind.value = data.wind.speed
+                Timber.tag("get data from api").i(data.toString())
             }
 
             override fun onFailure(error: Error) {
 
             }
         })
+
+
     }
 }
 
