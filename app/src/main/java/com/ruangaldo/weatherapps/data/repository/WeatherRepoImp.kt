@@ -15,76 +15,22 @@ import io.reactivex.schedulers.Schedulers
 import androidx.lifecycle.LiveDataReactiveStreams
 
 
-class WeatherRepoImp(private val service: ApiService,private val wtDao: WeatherDao) : WeatherRepo {
+class WeatherRepoImp(private val service: ApiService, private val wtDao: WeatherDao) : WeatherRepo {
 
     private var disposable: Disposable? = null
     private val compositeDisposable = CompositeDisposable()
     private val city = "1642911"
     private val key = "b794698a46abe2ac24c44a69ad0ef1ca"
-    var dataArray=mutableListOf<Any>()
-    override fun getDataSys(listener: OnSingleResponse<SysMsg>) {
-        disposable = service.getSys(city, key)
+    var dataArray = mutableListOf<Any>()
+
+    override fun getCurrentWeather(listener: OnSingleResponse<CurrentWeatherMsg>) {
+        disposable = service.getCurrentWeather(city, key)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 listener.onSuccess(it)
                 dataArray.add(it)
                 Log.e("Test Data", it.sys.sunrise.toString())
-            }, {
-                Log.e("Error", it.toString())
-                it.printStackTrace()
-            })
-    }
-
-    override fun getDataMain(listener: OnSingleResponse<MainMsg>) {
-        disposable = service.getMain(city, key)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                listener.onSuccess(it)
-                dataArray.add(it)
-                Log.e("Test Data", it.main.temp.toString())
-            }, {
-                Log.e("Error", it.toString())
-                it.printStackTrace()
-            })
-    }
-
-    override fun getDataInfo(listener: OnSingleResponse<InfoMsg>) {
-        disposable = service.getInfo(city, key)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                listener.onSuccess(it)
-                dataArray.add(it)
-                Log.e("Test Data", it.dt.toString())
-            }, {
-                Log.e("Error", it.toString())
-                it.printStackTrace()
-            })
-    }
-
-    override fun getDataWind(listener: OnSingleResponse<WindMsg>) {
-        disposable = service.getWind(city, key)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                listener.onSuccess(it)
-                dataArray.add(it)
-                Log.e("Test Data", it.wind.speed.toString())
-            }, {
-                Log.e("Error", it.toString())
-                it.printStackTrace()
-            })
-    }
-
-    override fun getDataWeather(listener: OnSingleResponse<WeatherMsg>) {
-        disposable = service.getWeather(city, key)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                listener.onSuccess(it)
-                Log.e("Test Data", it.weather[1].description)
             }, {
                 Log.e("Error", it.toString())
                 it.printStackTrace()
@@ -98,9 +44,12 @@ class WeatherRepoImp(private val service: ApiService,private val wtDao: WeatherD
             .subscribe())
     }
 
-    fun getDataById(lastUpdate: Int): LiveData<WeatherEntity>{
-        return LiveDataReactiveStreams.fromPublisher(wtDao.getData(lastUpdate)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.computation()))
+    fun getDataById(lastUpdate: Int): LiveData<WeatherEntity> {
+        return LiveDataReactiveStreams.fromPublisher(
+            wtDao.getData(lastUpdate)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.computation())
+        )
     }
 }
+

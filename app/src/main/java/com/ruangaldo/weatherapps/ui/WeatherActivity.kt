@@ -20,10 +20,6 @@ class WeatherActivity : AppCompatActivity() {
 
     }
     private fun runViewModel(){
-        weatherViewModel.getDataInfo()
-        weatherViewModel.getDataWeather()
-        weatherViewModel.getDataMain()
-        weatherViewModel.getDataSys()
-        weatherViewModel.getDataWind()
+        weatherViewModel.getCurrentWeather()
     }
 }
