@@ -1,6 +1,5 @@
-package com.ruangaldo.weatherapps.utils
+package com.ruangaldo.weatherapps.utils.ui
 
-import retrofit2.HttpException
 import java.text.SimpleDateFormat
 import java.util.*
 

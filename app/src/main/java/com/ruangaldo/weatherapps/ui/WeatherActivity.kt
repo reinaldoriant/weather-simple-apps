@@ -1,16 +1,12 @@
 package com.ruangaldo.weatherapps.ui
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.ruangaldo.weatherapps.R
 import com.ruangaldo.weatherapps.databinding.ActivityWeatherBinding
-import com.ruangaldo.weatherapps.utils.App
+
 
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -30,13 +26,16 @@ class WeatherActivity : AppCompatActivity() {
             Timber.d(it)
         })
         binding.swipeRefresh.setOnRefreshListener {
-            runViewModel()
-            binding.swipeRefresh.isRefreshing = false
+           weatherViewModel.getCurrentWeather()
         }
-
-
     }
     private fun runViewModel(){
+        weatherViewModel.getDataById().observe(this, {
+            weatherViewModel.setDataAll(it)
+        })
+        weatherViewModel.loadingData.observe(this,{
+            binding.swipeRefresh.isRefreshing=it
+        })
         weatherViewModel.getCurrentWeather()
         Timber.i("View Model run success")
     }

@@ -43,7 +43,7 @@
                         android:layout_marginEnd="4dp"
                         android:textColor="@color/white"
                         android:textSize="24sp"
-                        app:dataCity="@{viewModel.dataCity}"
+                        app:dataCity="@{viewModel.dataAll.city}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,7 +55,7 @@
                         android:layout_marginEnd="4dp"
                         android:textColor="@color/white"
                         android:textSize="24sp"
-                        app:dataCountry="@{viewModel.dataCountry}"
+                        app:dataCountry="@{viewModel.dataAll.country}"
                         app:layout_constraintBottom_toBottomOf="@id/tvCity"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tvCity"
@@ -91,7 +91,7 @@
                         android:layout_marginEnd="4dp"
                         android:textColor="@color/white"
                         android:textSize="14sp"
-                        app:dataUpdateAt="@{viewModel.dataUpdateAt}"
+                        app:dataUpdateAt="@{viewModel.dataAll.update_at}"
                         app:layout_constraintBottom_toBottomOf="@+id/UpdateAt"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/UpdateAt"
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:textSize="18sp"
-                        app:dataStatus="@{viewModel.dataStatus}"
+                        app:dataStatus="@{viewModel.dataAll.status}"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -147,7 +147,7 @@
                         android:fontFamily="sans-serif-thin"
                         android:textColor="@color/white"
                         android:textSize="100sp"
-                        app:dataTemp="@{viewModel.dataTemp}"
+                        app:dataTemp="@{viewModel.dataAll.temp}"
                         app:layout_constraintLeft_toLeftOf="@id/tvStatus"
                         app:layout_constraintRight_toRightOf="@id/tvStatus"
                         app:layout_constraintTop_toBottomOf="@id/tvStatus" />
@@ -193,7 +193,7 @@
                             android:layout_marginEnd="4dp"
                             android:textColor="@color/white"
                             android:textSize="14sp"
-                            app:dataTempMin="@{viewModel.dataTempMin}"
+                            app:dataTempMin="@{viewModel.dataAll.temp_min}"
                             app:layout_constraintBottom_toBottomOf="@id/tvMin"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@id/tvMin" />
@@ -239,7 +239,7 @@
                             android:layout_marginEnd="4dp"
                             android:textColor="@color/white"
                             android:textSize="14sp"
-                            app:dataTempMax="@{viewModel.dataTempMax}"
+                            app:dataTempMax="@{viewModel.dataAll.temp_max}"
                             app:layout_constraintBottom_toBottomOf="@id/tvMax"
                             app:layout_constraintStart_toEndOf="@id/tvMax"
                             app:layout_constraintTop_toTopOf="@id/tvMax" />
@@ -307,7 +307,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="14sp"
-                            app:dataSunrise="@{viewModel.dataSunrise}"
+                            app:dataSunrise="@{viewModel.dataAll.sunrise}"
                             app:layout_constraintEnd_toEndOf="@+id/Sunrise"
                             app:layout_constraintStart_toStartOf="@+id/Sunrise"
                             app:layout_constraintTop_toBottomOf="@+id/Sunrise" />
@@ -372,7 +372,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="14sp"
-                            app:dataSunset="@{viewModel.dataSunset}"
+                            app:dataSunset="@{viewModel.dataAll.sunset}"
                             app:layout_constraintEnd_toEndOf="@+id/Sunset"
                             app:layout_constraintStart_toStartOf="@+id/Sunset"
                             app:layout_constraintTop_toBottomOf="@+id/Sunset" />
@@ -438,7 +438,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="14sp"
-                            app:dataWind="@{viewModel.dataWind}"
+                            app:dataWind="@{viewModel.dataAll.wind}"
                             app:layout_constraintEnd_toEndOf="@+id/wind"
                             app:layout_constraintStart_toStartOf="@+id/wind"
                             app:layout_constraintTop_toBottomOf="@+id/wind" />
@@ -510,7 +510,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="14sp"
-                            app:dataPressure="@{viewModel.dataPressure}"
+                            app:dataPressure="@{viewModel.dataAll.pressure}"
                             app:layout_constraintEnd_toEndOf="@+id/Pressure"
                             app:layout_constraintStart_toStartOf="@+id/Pressure"
                             app:layout_constraintTop_toBottomOf="@+id/Pressure" />

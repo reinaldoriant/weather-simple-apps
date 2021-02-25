@@ -1,6 +1,8 @@
 package com.ruangaldo.weatherapps.data.model
 
 
+import com.ruangaldo.weatherapps.data.local.WeatherEntity
+import com.ruangaldo.weatherapps.utils.ui.ID_DB
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -54,4 +56,21 @@ data class CurrentWeatherMsg(
         @Json(name = "speed")
         val speed: Double
     )
+
+    fun backToEntity() = WeatherEntity(
+        ID_DB,
+        name,
+        sys.country,
+        dt,
+        weather.first().main,
+        main.temp,
+        main.tempMin,
+        main.tempMax,
+        sys.sunrise,
+        sys.sunset,
+        wind.speed,
+        main.pressure,
+        main.humidity
+    )
+
 }

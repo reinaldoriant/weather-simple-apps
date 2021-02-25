@@ -21,7 +21,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        if(BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
         context = WeakReference(applicationContext)
@@ -30,6 +30,7 @@ class App : Application() {
             context.get()?.let { androidContext(it) }
             loadKoinModules(listOf(uiModule, repositoryModule, apiModule, dbModule))
         }
-
     }
+
+
 }

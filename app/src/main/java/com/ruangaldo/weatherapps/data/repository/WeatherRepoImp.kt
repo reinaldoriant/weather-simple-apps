@@ -2,15 +2,15 @@ package com.ruangaldo.weatherapps.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
-import androidx.lifecycle.map
 import com.ruangaldo.weatherapps.data.local.WeatherDao
 import com.ruangaldo.weatherapps.data.local.WeatherEntity
 import com.ruangaldo.weatherapps.data.model.CurrentWeatherMsg
 import com.ruangaldo.weatherapps.data.remote.ApiService
-import com.ruangaldo.weatherapps.utils.OnSingleResponse
-import com.ruangaldo.weatherapps.utils.getErrorMessage
-import com.ruangaldo.weatherapps.utils.getErrorThrowableCode
-import com.ruangaldo.weatherapps.utils.getServiceErrorMsg
+import com.ruangaldo.weatherapps.utils.api.OnSingleResponse
+import com.ruangaldo.weatherapps.utils.api.getErrorMessage
+import com.ruangaldo.weatherapps.utils.api.getErrorThrowableCode
+import com.ruangaldo.weatherapps.utils.api.getServiceErrorMsg
+import com.ruangaldo.weatherapps.utils.ui.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -23,50 +23,31 @@ class WeatherRepoImp(private val service: ApiService, private val wtDao: Weather
 
     private var disposable: Disposable? = null
     private val compositeDisposable = CompositeDisposable()
-    private val city = "1642911"
-    private val key = "b794698a46abe2ac24c44a69ad0ef1ca"
-
 
     override fun getCurrentWeather(listener: OnSingleResponse<CurrentWeatherMsg>) {
-        disposable = service.getCurrentWeather(city, key)
+        listener.onLoading(true)
+        disposable = service.getCurrentWeather(CITY_CODE, KEY)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                listener.onSuccess(it)
-                val dataField = WeatherEntity(
-                    14045,
-                    it.name,
-                    it.sys.country,
-                    it.dt,
-                    it.weather.first().main,
-                    it.main.temp,
-                    it.main.tempMin,
-                    it.main.tempMax,
-                    it.sys.sunrise,
-                    it.sys.sunset,
-                    it.wind.speed,
-                    it.main.pressure,
-                    it.main.humidity
-                )
+                val dataField =it.backToEntity()
                 insertDataLocal(dataField)
+                listener.onSuccess()
+                listener.onLoading(false)
                 Timber.tag("Get from API").i(it.toString())
                 Timber.tag("Send to DB Local").i(dataField.toString())
-            }, {
-                val msg=getErrorMessage(it.getServiceErrorMsg(),it.getErrorThrowableCode())
-                if (msg=="Unknown Error"){
-                    getDataById().map {dataLocal->
-                        listener.onFailure(dataLocal)
-                    }
-                    listener.errorMsg("Check your internet connection")
-                    val msgnya= listener.errorMsg("Check your internet connection")
-                    Timber.d(msgnya.toString())
-                }
-                else{
+            }) {
+                val msg = getErrorMessage(it.getServiceErrorMsg(), it.getErrorThrowableCode())
+                val errorMsg: Any = if (msg == UNKNOWN_ERR) {
+                    listener.errorMsg(CHECK_INT)
+                } else {
                     listener.errorMsg(msg)
                 }
-                Timber.tag("Get Error").e(msg)
+                listener.onFailure()
+                listener.onLoading(false)
+                Timber.tag("Get Error").e(errorMsg.toString())
                 it.printStackTrace()
-            })
+            }
     }
 
     private fun insertDataLocal(weatherEntity: WeatherEntity) {
@@ -77,9 +58,9 @@ class WeatherRepoImp(private val service: ApiService, private val wtDao: Weather
         Timber.tag("Insert to DB Local").i(weatherEntity.toString())
     }
 
-    private fun getDataById(): LiveData<WeatherEntity> {
+    fun getDataById(): LiveData<WeatherEntity> {
         return LiveDataReactiveStreams.fromPublisher(
-            wtDao.getData(14045)
+            wtDao.getData(ID_DB)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.computation())
         )

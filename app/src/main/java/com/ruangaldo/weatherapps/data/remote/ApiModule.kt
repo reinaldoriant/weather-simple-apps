@@ -1,5 +1,6 @@
 package com.ruangaldo.weatherapps.data.remote
 
+import com.ruangaldo.weatherapps.utils.ui.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -9,7 +10,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object ApiModule {
-    private const val BASE_URL = "https://api.openweathermap.org"
     private val builder: Moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()

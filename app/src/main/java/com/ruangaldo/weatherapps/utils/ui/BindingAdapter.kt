@@ -1,10 +1,8 @@
-package com.ruangaldo.weatherapps.utils
+package com.ruangaldo.weatherapps.utils.ui
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import timber.log.Timber
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 @BindingAdapter("dataCity")

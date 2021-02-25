@@ -12,5 +12,5 @@ interface WeatherDao {
     fun insertData(dataWeather: WeatherEntity)
 
     @Query("SELECT * FROM dataWeather WHERE id = :key")
-    fun getData(key:Int): Flowable<WeatherEntity>
+    fun getData(key: Int): Flowable<WeatherEntity>
 }
