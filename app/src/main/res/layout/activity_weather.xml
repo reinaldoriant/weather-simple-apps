@@ -575,7 +575,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="14sp"
-                            app:dataHumidity="@{viewModel.dataHumidity}"
+                            app:dataHumidity="@{viewModel.dataAll.humidity}"
                             app:layout_constraintEnd_toEndOf="@+id/Humidity"
                             app:layout_constraintStart_toStartOf="@+id/Humidity"
                             app:layout_constraintTop_toBottomOf="@+id/Humidity" />
