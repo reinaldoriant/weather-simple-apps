@@ -1,8 +1,11 @@
 package com.ruangaldo.weatherapps.ui
 
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.ruangaldo.weatherapps.data.local.WeatherEntity
 import com.ruangaldo.weatherapps.data.model.CurrentWeatherMsg
 import com.ruangaldo.weatherapps.data.repository.WeatherRepoImp
 import com.ruangaldo.weatherapps.utils.OnSingleResponse
@@ -22,7 +25,6 @@ class WeatherViewModel(private var repo: WeatherRepoImp) : ViewModel() {
     val dataWind = MutableLiveData<Double>()
     val dataPressure = MutableLiveData<Int>()
     val dataHumidity = MutableLiveData<Int>()
-
     fun getCurrentWeather() {
         repo.getCurrentWeather(object : OnSingleResponse<CurrentWeatherMsg> {
             override fun onSuccess(data: CurrentWeatherMsg?) {
@@ -41,9 +43,22 @@ class WeatherViewModel(private var repo: WeatherRepoImp) : ViewModel() {
                 Timber.tag("get data from api").i(data.toString())
             }
 
-            override fun onFailure(error: Error) {
-
+            override fun onFailure(error: WeatherEntity) {
+                dataUpdateAt.value = error.update_at
+                dataCity.value = error.city
+                dataStatus.value = error.status
+                dataTemp.value = error.temp
+                dataTempMin.value = error.temp_min
+                dataTempMax.value = error.temp_max
+                dataPressure.value = error.pressure
+                dataHumidity.value = error.humidity
+                dataSunrise.value = error.sunrise
+                dataSunset.value = error.sunset
+                dataCountry.value = error.country
+                dataWind.value = error.wind
             }
+
+
         })
 
 

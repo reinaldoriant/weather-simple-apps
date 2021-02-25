@@ -11,6 +11,6 @@ interface WeatherDao {
     @Insert(onConflict = REPLACE)
     fun insertData(dataWeather: WeatherEntity)
 
-    @Query("SELECT * FROM dataWeather WHERE update_at = :lastUpdate")
-    fun getData(lastUpdate:Int): Flowable<WeatherEntity>
+    @Query("SELECT * FROM dataWeather WHERE id = :key")
+    fun getData(key:Int): Flowable<WeatherEntity>
 }

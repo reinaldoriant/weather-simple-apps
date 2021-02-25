@@ -2,11 +2,14 @@ package com.ruangaldo.weatherapps.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
+import androidx.lifecycle.map
 import com.ruangaldo.weatherapps.data.local.WeatherDao
 import com.ruangaldo.weatherapps.data.local.WeatherEntity
 import com.ruangaldo.weatherapps.data.model.CurrentWeatherMsg
 import com.ruangaldo.weatherapps.data.remote.ApiService
 import com.ruangaldo.weatherapps.utils.OnSingleResponse
+import com.ruangaldo.weatherapps.utils.getErrorMessage
+import com.ruangaldo.weatherapps.utils.getErrorThrowableCode
 import com.ruangaldo.weatherapps.utils.getServiceErrorMsg
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -48,9 +51,14 @@ class WeatherRepoImp(private val service: ApiService, private val wtDao: Weather
                 insertDataLocal(dataField)
                 Timber.tag("Get from API").i(it.toString())
                 Timber.tag("Send to DB Local").i(dataField.toString())
-            }, {
-                it.getServiceErrorMsg()
-                Timber.e(it.toString())
+            }, { it ->
+                val msg=getErrorMessage(it.getServiceErrorMsg(),it.getErrorThrowableCode())
+                if (msg=="Unknown Error"){
+                    getDataById(14045).map {dataLocal->
+                        listener.onFailure(dataLocal)
+                    }
+                }
+                Timber.tag("Get Error").e(msg)
                 it.printStackTrace()
             })
     }
@@ -63,7 +71,7 @@ class WeatherRepoImp(private val service: ApiService, private val wtDao: Weather
         Timber.tag("Insert to DB Local").i(weatherEntity.toString())
     }
 
-    fun getDataById(lastUpdate: Int): LiveData<WeatherEntity> {
+    private fun getDataById(lastUpdate: Int): LiveData<WeatherEntity> {
         return LiveDataReactiveStreams.fromPublisher(
             wtDao.getData(lastUpdate)
                 .observeOn(AndroidSchedulers.mainThread())
