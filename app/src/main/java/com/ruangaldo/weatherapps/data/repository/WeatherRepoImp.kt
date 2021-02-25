@@ -54,7 +54,7 @@ class WeatherRepoImp(private val service: ApiService, private val wtDao: Weather
             }, { it ->
                 val msg=getErrorMessage(it.getServiceErrorMsg(),it.getErrorThrowableCode())
                 if (msg=="Unknown Error"){
-                    getDataById(14045).map {dataLocal->
+                    getDataById().map {dataLocal->
                         listener.onFailure(dataLocal)
                     }
                 }
@@ -71,9 +71,9 @@ class WeatherRepoImp(private val service: ApiService, private val wtDao: Weather
         Timber.tag("Insert to DB Local").i(weatherEntity.toString())
     }
 
-    private fun getDataById(lastUpdate: Int): LiveData<WeatherEntity> {
+    private fun getDataById(): LiveData<WeatherEntity> {
         return LiveDataReactiveStreams.fromPublisher(
-            wtDao.getData(lastUpdate)
+            wtDao.getData(14045)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.computation())
         )
