@@ -27,7 +27,7 @@ class App : Application() {
         context = WeakReference(applicationContext)
         startKoin {
             androidLogger()
-            androidContext(this@App)
+            context.get()?.let { androidContext(it) }
             loadKoinModules(listOf(uiModule, repositoryModule, apiModule, dbModule))
         }
 

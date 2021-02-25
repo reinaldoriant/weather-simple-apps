@@ -1,13 +1,11 @@
 package com.ruangaldo.weatherapps.utils
 
-import android.util.Log
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val celsiusFormat = " \u2103"
 
 @BindingAdapter("dataCity")
 fun dataCity(view: TextView, text: String?) {
@@ -24,9 +22,8 @@ fun dataCountry(view: TextView, text: String?) {
 
 @BindingAdapter("dataUpdateAt")
 fun dataUpdateAt(view: TextView, text: Int) {
-    val dataDate = text.toLong()
-    view.text = SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(Date(dataDate * 1000))
-    Timber.tag("cek dataUpdateAt").i(text.toString())
+    view.text = text.toLong().dateFormat()
+    Timber.tag("cek dataUpdateAt").i(text.toLong().dateFormat())
 }
 
 @BindingAdapter("dataStatus")
@@ -37,34 +34,31 @@ fun dataStatus(view: TextView, text: String?) {
 
 @BindingAdapter("dataTemp")
 fun dataTemp(view: TextView, text: Double) {
-    val roundTemp = String.format("%.0f", text)
-    view.text = (roundTemp + celsiusFormat)
+    view.text = text.tempFormat()
     Timber.tag("cek dataTemp").i(text.toString())
 }
 
 @BindingAdapter("dataTempMin")
 fun dataTempMin(view: TextView, text: Double) {
-    val roundTemp = String.format("%.0f", text)
-    view.text = (roundTemp + celsiusFormat)
+    view.text = text.tempFormat()
     Timber.tag("cek dataTempMin").i(text.toString())
 }
 
 @BindingAdapter("dataTempMax")
 fun dataTempMax(view: TextView, text: Double) {
-    val roundTemp = String.format("%.0f", text)
-    view.text = (roundTemp + celsiusFormat)
+    view.text = text.tempFormat()
     Timber.tag("cek dataTempMax").i(text.toString())
 }
 
 @BindingAdapter("dataSunrise")
 fun dataSunrise(view: TextView, text: Long) {
-    view.text = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(text * 1000))
+    view.text = text.timeFormat()
     Timber.tag("cek dataSunrise").i(text.toString())
 }
 
 @BindingAdapter("dataSunset")
 fun dataSunset(view: TextView, text: Long) {
-    view.text = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(text * 1000))
+    view.text = text.timeFormat()
     Timber.tag("cek dataSunset").i(text.toString())
 }
 
