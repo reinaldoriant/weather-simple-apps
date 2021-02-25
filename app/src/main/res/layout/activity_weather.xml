@@ -14,12 +14,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/gradient_bg"
         tools:context=".ui.WeatherActivity">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/gradient_bg">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -60,6 +61,7 @@
                         app:layout_constraintStart_toEndOf="@id/tvCity"
                         app:layout_constraintTop_toTopOf="@id/tvCity" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cont_updateAt"
                     android:layout_width="wrap_content"
@@ -95,6 +97,7 @@
                         app:layout_constraintStart_toEndOf="@id/UpdateAt"
                         app:layout_constraintTop_toTopOf="@+id/UpdateAt" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cont_status"
                     android:layout_width="wrap_content"
@@ -242,6 +245,7 @@
                             app:layout_constraintTop_toTopOf="@id/tvMax" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cont_details_all"
                     android:layout_width="match_parent"

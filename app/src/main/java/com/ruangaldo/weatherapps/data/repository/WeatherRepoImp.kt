@@ -51,12 +51,18 @@ class WeatherRepoImp(private val service: ApiService, private val wtDao: Weather
                 insertDataLocal(dataField)
                 Timber.tag("Get from API").i(it.toString())
                 Timber.tag("Send to DB Local").i(dataField.toString())
-            }, { it ->
+            }, {
                 val msg=getErrorMessage(it.getServiceErrorMsg(),it.getErrorThrowableCode())
                 if (msg=="Unknown Error"){
                     getDataById().map {dataLocal->
                         listener.onFailure(dataLocal)
                     }
+                    listener.errorMsg("Check your internet connection")
+                    val msgnya= listener.errorMsg("Check your internet connection")
+                    Timber.d(msgnya.toString())
+                }
+                else{
+                    listener.errorMsg(msg)
                 }
                 Timber.tag("Get Error").e(msg)
                 it.printStackTrace()

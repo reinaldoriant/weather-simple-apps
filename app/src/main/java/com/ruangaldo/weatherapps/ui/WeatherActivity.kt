@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.ruangaldo.weatherapps.R
 import com.ruangaldo.weatherapps.databinding.ActivityWeatherBinding
+import com.ruangaldo.weatherapps.utils.App
 
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -24,6 +25,14 @@ class WeatherActivity : AppCompatActivity() {
         binding.viewModel=weatherViewModel
         binding.lifecycleOwner = this
         runViewModel()
+        weatherViewModel.errorMessage.observe(this,{
+            Toast.makeText(this,it,Toast.LENGTH_SHORT).show()
+            Timber.d(it)
+        })
+        binding.swipeRefresh.setOnRefreshListener {
+            runViewModel()
+            binding.swipeRefresh.isRefreshing = false
+        }
 
 
     }

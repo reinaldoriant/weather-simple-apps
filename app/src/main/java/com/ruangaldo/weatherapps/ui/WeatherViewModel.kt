@@ -25,6 +25,7 @@ class WeatherViewModel(private var repo: WeatherRepoImp) : ViewModel() {
     val dataWind = MutableLiveData<Double>()
     val dataPressure = MutableLiveData<Int>()
     val dataHumidity = MutableLiveData<Int>()
+    val errorMessage= MutableLiveData<String>()
     fun getCurrentWeather() {
         repo.getCurrentWeather(object : OnSingleResponse<CurrentWeatherMsg> {
             override fun onSuccess(data: CurrentWeatherMsg?) {
@@ -56,6 +57,11 @@ class WeatherViewModel(private var repo: WeatherRepoImp) : ViewModel() {
                 dataSunset.value = error.sunset
                 dataCountry.value = error.country
                 dataWind.value = error.wind
+            }
+
+            override fun errorMsg(errorMsg: String) {
+                errorMessage.value=errorMsg
+                Timber.tag("cek error msg").e(errorMsg)
             }
 
 
