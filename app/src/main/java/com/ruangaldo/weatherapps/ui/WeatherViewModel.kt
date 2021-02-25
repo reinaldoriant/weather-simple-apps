@@ -3,6 +3,7 @@ package com.ruangaldo.weatherapps.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ruangaldo.weatherapps.data.local.WeatherEntity
 import com.ruangaldo.weatherapps.data.model.*
 import com.ruangaldo.weatherapps.data.repository.WeatherRepoImp
 import com.ruangaldo.weatherapps.utils.OnSingleResponse
@@ -36,7 +37,7 @@ class WeatherViewModel(private var repo: WeatherRepoImp) : ViewModel() {
     fun getDataWeather() {
         repo.getDataWeather(object : OnSingleResponse<WeatherMsg> {
             override fun onSuccess(data: WeatherMsg?) {
-               dataStatus.value=data!!.weather[0].main
+               dataStatus.value=data!!.weather.first().main
             }
             override fun onFailure(error: Error) {
             }

@@ -3,6 +3,7 @@ package com.ruangaldo.weatherapps.utils
 import android.app.Application
 import android.content.Context
 import com.ruangaldo.weatherapps.di.apiModule
+import com.ruangaldo.weatherapps.di.dbModule
 import com.ruangaldo.weatherapps.di.repositoryModule
 import com.ruangaldo.weatherapps.di.uiModule
 import org.koin.android.ext.koin.androidContext
@@ -22,7 +23,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            loadKoinModules(listOf(uiModule, repositoryModule, apiModule))
+            loadKoinModules(listOf(uiModule, repositoryModule, apiModule, dbModule))
         }
 
     }
