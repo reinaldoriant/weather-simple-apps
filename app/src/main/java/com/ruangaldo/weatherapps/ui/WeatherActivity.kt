@@ -41,4 +41,8 @@ class WeatherActivity : AppCompatActivity() {
         logCat("Success","Run ViewModel")
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.viewModel
+    }
 }

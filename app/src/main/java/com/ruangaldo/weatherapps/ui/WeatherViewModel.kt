@@ -11,7 +11,6 @@ import com.ruangaldo.weatherapps.utils.ui.logCat
 
 class WeatherViewModel(private var repo: WeatherRepoImp) : ViewModel() {
 
-    val dataHumidity = MutableLiveData<Int>()
     val errorMessage = MutableLiveData<String>()
     val dataAll = MutableLiveData<WeatherEntity>()
     val loadingData= MutableLiveData<Boolean>()

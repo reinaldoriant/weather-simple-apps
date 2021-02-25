@@ -14,6 +14,7 @@ Weather Apps is Simple Android weather application
 - Room Database
 - Dependency Injection (Koin)
 - Data Binding
+- LeakCanary for memory leak detection
 
 ## Status :
 

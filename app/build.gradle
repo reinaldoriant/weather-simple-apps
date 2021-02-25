@@ -72,10 +72,12 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
     //library Koin DI
-    def koin_version="2.2.2"
+    def koin_version = "2.2.2"
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-android-viewmodel:$koin_version"
     //library Timber Logger
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    //library leakcanary for debug memory leak
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
 
 }
