@@ -16,8 +16,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
-
 
 class WeatherRepoImp(private val service: ApiService, private val wtDao: WeatherDao) : WeatherRepo {
 
@@ -30,22 +28,21 @@ class WeatherRepoImp(private val service: ApiService, private val wtDao: Weather
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                val dataField =it.backToEntity()
+                val dataField = it.backToEntity()
                 insertDataLocal(dataField)
                 listener.onSuccess()
                 listener.onLoading(false)
-                Timber.tag("Get from API").i(it.toString())
-                Timber.tag("Send to DB Local").i(dataField.toString())
+                logCat("Success", it.toString())
             }) {
                 val msg = getErrorMessage(it.getServiceErrorMsg(), it.getErrorThrowableCode())
-                val errorMsg: Any = if (msg == UNKNOWN_ERR) {
+                if (msg == UNKNOWN_ERR) {
                     listener.errorMsg(CHECK_INT)
                 } else {
                     listener.errorMsg(msg)
                 }
                 listener.onFailure()
                 listener.onLoading(false)
-                Timber.tag("Get Error").e(errorMsg.toString())
+                logCat("WeatherRepoImp", "error from get API", it)
                 it.printStackTrace()
             }
     }
@@ -55,7 +52,7 @@ class WeatherRepoImp(private val service: ApiService, private val wtDao: Weather
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe())
-        Timber.tag("Insert to DB Local").i(weatherEntity.toString())
+        logCat("Success", weatherEntity.toString())
     }
 
     fun getDataById(): LiveData<WeatherEntity> {

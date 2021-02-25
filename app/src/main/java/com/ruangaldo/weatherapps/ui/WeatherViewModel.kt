@@ -6,7 +6,8 @@ import com.ruangaldo.weatherapps.data.local.WeatherEntity
 import com.ruangaldo.weatherapps.data.model.CurrentWeatherMsg
 import com.ruangaldo.weatherapps.data.repository.WeatherRepoImp
 import com.ruangaldo.weatherapps.utils.api.OnSingleResponse
-import timber.log.Timber
+import com.ruangaldo.weatherapps.utils.ui.logCat
+
 
 class WeatherViewModel(private var repo: WeatherRepoImp) : ViewModel() {
 
@@ -24,14 +25,13 @@ class WeatherViewModel(private var repo: WeatherRepoImp) : ViewModel() {
             }
             override fun errorMsg(errorMsg: String) {
                 errorMessage.value = errorMsg
-                Timber.tag("cek error msg").e(errorMsg)
             }
         })
     }
 
     fun setDataAll(dataAll:WeatherEntity){
         this.dataAll.value=dataAll
-        Timber.tag("get data from api").i(dataAll.toString())
+        logCat("Success",dataAll.toString())
     }
     fun getDataById(): LiveData<WeatherEntity> {
         return repo.getDataById()

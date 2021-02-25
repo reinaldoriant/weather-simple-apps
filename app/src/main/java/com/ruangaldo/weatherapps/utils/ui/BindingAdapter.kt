@@ -2,79 +2,78 @@ package com.ruangaldo.weatherapps.utils.ui
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import timber.log.Timber
 
 
 @BindingAdapter("dataCity")
 fun dataCity(view: TextView, text: String?) {
     view.text = ("$text,")
-    Timber.tag("cek dataCity").i(text.toString())
+    logCat("check dataCity",text.toString())
 }
 
 @BindingAdapter("dataCountry")
 fun dataCountry(view: TextView, text: String?) {
     view.text = text
-    Timber.tag("cek dataCountry").i(text.toString())
+    logCat("check dataCountry",text.toString())
 }
 
 
 @BindingAdapter("dataUpdateAt")
 fun dataUpdateAt(view: TextView, text: Int) {
     view.text = text.toLong().dateFormat()
-    Timber.tag("cek dataUpdateAt").i(text.toLong().dateFormat())
+    logCat("check dataUpdateAt",text.toLong().dateFormat())
 }
 
 @BindingAdapter("dataStatus")
 fun dataStatus(view: TextView, text: String?) {
     view.text = text
-    Timber.tag("cek dataStatus").i(text.toString())
+    logCat("check dataStatus",text.toString())
 }
 
 @BindingAdapter("dataTemp")
 fun dataTemp(view: TextView, text: Double) {
     view.text = text.tempFormat()
-    Timber.tag("cek dataTemp").i(text.toString())
+    logCat("check dataTemp",text.toString())
 }
 
 @BindingAdapter("dataTempMin")
 fun dataTempMin(view: TextView, text: Double) {
     view.text = text.tempFormat()
-    Timber.tag("cek dataTempMin").i(text.toString())
+    logCat("check dataTempMin",text.toString())
 }
 
 @BindingAdapter("dataTempMax")
 fun dataTempMax(view: TextView, text: Double) {
     view.text = text.tempFormat()
-    Timber.tag("cek dataTempMax").i(text.toString())
+    logCat("check dataTempMax",text.toString())
 }
 
 @BindingAdapter("dataSunrise")
 fun dataSunrise(view: TextView, text: Long) {
     view.text = text.timeFormat()
-    Timber.tag("cek dataSunrise").i(text.toString())
+    logCat("check dataSunrise",text.toString())
 }
 
 @BindingAdapter("dataSunset")
 fun dataSunset(view: TextView, text: Long) {
     view.text = text.timeFormat()
-    Timber.tag("cek dataSunset").i(text.toString())
+    logCat("check dataSunset",text.toString())
 }
 
 @BindingAdapter("dataWind")
 fun dataWind(view: TextView, text: Double) {
     view.text = text.toString()
-    Timber.tag("cek dataWind").i(text.toString())
+    logCat("check dataWind",text.toString())
 }
 
 @BindingAdapter("dataPressure")
 fun dataPressure(view: TextView, text: Int) {
     view.text = text.toString()
-    Timber.tag("cek dataPressure").i(text.toString())
+    logCat("check dataPressure",text.toString())
 }
 
 @BindingAdapter("dataHumidity")
 fun dataHumidity(view: TextView, text: Int) {
     view.text = text.toString()
-    Timber.tag("cek dataHumidity").i(text.toString())
+    logCat("check dataHumidity",text.toString())
 }
 

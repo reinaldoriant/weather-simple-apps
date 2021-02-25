@@ -1,5 +1,6 @@
 package com.ruangaldo.weatherapps.utils.ui
 
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -12,4 +13,9 @@ fun Long.timeFormat():String {
 
 fun Double.tempFormat():String {
     return String.format("%.0f",this) + " \u2103"
+}
+
+fun logCat(tag:String,string:String,error:Throwable?=null){
+    if (error==null) Timber.tag(tag).i(string)
+    else Timber.tag(tag).e(string)
 }

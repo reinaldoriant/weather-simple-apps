@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.ruangaldo.weatherapps.R
 import com.ruangaldo.weatherapps.databinding.ActivityWeatherBinding
+import com.ruangaldo.weatherapps.utils.ui.logCat
 
 
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -37,7 +38,7 @@ class WeatherActivity : AppCompatActivity() {
             binding.swipeRefresh.isRefreshing=it
         })
         weatherViewModel.getCurrentWeather()
-        Timber.i("View Model run success")
+        logCat("Success","Run ViewModel")
     }
 
 }
