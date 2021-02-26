@@ -1,7 +1,6 @@
 # Weather Apps
 [![forthebadge made-with-android](https://forthebadge.com/images/badges/built-for-android.svg)](https://www.android.com/)
 
-
 Weather Apps is Simple Android weather application
 
 ## Technology Behind The Apps :
@@ -31,5 +30,8 @@ Weather Apps is Simple Android weather application
 ## How to Use :
 
 - Clone this repository to AndroidStudioProjects folder in your user folder. Ex: $:\Users\YourUser\AndroidStudioProjects\.
-- Run the app with emulator or real device.
+- Run the apps with emulator or real device. and show like below
+
+[![image](https://media.giphy.com/media/HUhxMlOzuspsBe5Nn0/giphy.gif)
+
 
