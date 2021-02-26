@@ -459,7 +459,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
-
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cont_details_1"
                         android:layout_width="100dp"
@@ -485,24 +484,17 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:tint="@color/white" />
 
-                        <Space
-                            android:id="@+id/spaceContDet_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="8dp"
-                            app:layout_constraintEnd_toEndOf="@+id/ivPressure"
-                            app:layout_constraintStart_toStartOf="@+id/ivPressure"
-                            app:layout_constraintTop_toBottomOf="@+id/ivPressure" />
-
                         <TextView
                             android:id="@+id/Pressure"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:text="@string/tvPressure"
                             android:textColor="@color/white"
                             android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="@+id/spaceContDet_1"
-                            app:layout_constraintStart_toStartOf="@+id/spaceContDet_1"
-                            app:layout_constraintTop_toBottomOf="@+id/spaceContDet_1" />
+                            app:layout_constraintEnd_toEndOf="@+id/ivPressure"
+                            app:layout_constraintStart_toStartOf="@+id/ivPressure"
+                            app:layout_constraintTop_toBottomOf="@+id/ivPressure" />
 
                         <TextView
                             android:id="@+id/tvPressure"
@@ -550,24 +542,17 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:tint="@color/white" />
 
-                        <Space
-                            android:id="@+id/spaceContDet_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="8dp"
-                            app:layout_constraintEnd_toEndOf="@+id/ivHumidity"
-                            app:layout_constraintStart_toStartOf="@+id/ivHumidity"
-                            app:layout_constraintTop_toBottomOf="@+id/ivHumidity" />
-
                         <TextView
                             android:id="@+id/Humidity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:text="@string/tvHumidity"
                             android:textColor="@color/white"
                             android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="@+id/spaceContDet_2"
-                            app:layout_constraintStart_toStartOf="@+id/spaceContDet_2"
-                            app:layout_constraintTop_toBottomOf="@+id/spaceContDet_2" />
+                            app:layout_constraintEnd_toEndOf="@+id/ivHumidity"
+                            app:layout_constraintStart_toStartOf="@+id/ivHumidity"
+                            app:layout_constraintTop_toBottomOf="@+id/ivHumidity" />
 
                         <TextView
                             android:id="@+id/tvHumidity"
@@ -616,24 +601,17 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:tint="@color/white" />
 
-                        <Space
-                            android:id="@+id/spaceContDet_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="8dp"
-                            app:layout_constraintEnd_toEndOf="@+id/ivInfo"
-                            app:layout_constraintStart_toStartOf="@+id/ivInfo"
-                            app:layout_constraintTop_toBottomOf="@+id/ivInfo" />
-
                         <TextView
                             android:id="@+id/info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:text="@string/tvCreated_by"
                             android:textColor="@color/white"
                             android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="@+id/spaceContDet_3"
-                            app:layout_constraintStart_toStartOf="@+id/spaceContDet_3"
-                            app:layout_constraintTop_toBottomOf="@+id/spaceContDet_3" />
+                            app:layout_constraintEnd_toEndOf="@+id/ivInfo"
+                            app:layout_constraintStart_toStartOf="@+id/ivInfo"
+                            app:layout_constraintTop_toBottomOf="@+id/ivInfo" />
 
                         <TextView
                             android:layout_width="wrap_content"

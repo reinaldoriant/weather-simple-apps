@@ -9,7 +9,7 @@ data class WeatherEntity(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
     @ColumnInfo(name = "city") val city: String? = null,
     @ColumnInfo(name = "country") val country: String? = null,
-    @ColumnInfo(name = "update_at") val update_at: Int? = null,
+    @ColumnInfo(name = "update_at") var update_at: Int? = null,
     @ColumnInfo(name = "status") val status: String? = null,
     @ColumnInfo(name = "temp") val temp: Double? = null,
     @ColumnInfo(name = "temp_min") val temp_min: Double? = null,
