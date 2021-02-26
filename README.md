@@ -15,6 +15,7 @@ Weather Apps is Simple Android weather application
 - Dependency Injection (Koin)
 - Data Binding
 - LeakCanary for memory leak detection
+- Testing using Espresso and Junit
 
 ## Status :
 
