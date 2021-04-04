@@ -33,7 +33,7 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun runViewModel() {
-        weatherViewModel.getDataById().observe(this, {
+        weatherViewModel.dataById.observe(this, {
             weatherViewModel.setDataAll(it)
         })
         weatherViewModel.loadingData.observe(this, {
