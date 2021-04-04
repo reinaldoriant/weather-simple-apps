@@ -1,8 +1,8 @@
 package com.ruangaldo.weatherapps.data.repository
 
-import com.ruangaldo.weatherapps.data.model.*
-import com.ruangaldo.weatherapps.utils.api.OnSingleResponse
+import com.ruangaldo.weatherapps.data.model.CurrentWeatherMsg
+import io.reactivex.Flowable
 
 interface WeatherRepo {
-    fun getCurrentWeather(listener: OnSingleResponse<CurrentWeatherMsg>)
+    fun getCurrentWeather(): Flowable<CurrentWeatherMsg>
 }

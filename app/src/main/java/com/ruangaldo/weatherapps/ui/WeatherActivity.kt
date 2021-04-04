@@ -16,33 +16,30 @@ import timber.log.Timber
 class WeatherActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWeatherBinding
     private val weatherViewModel: WeatherViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_weather)
-        binding.viewModel=weatherViewModel
+        binding.viewModel = weatherViewModel
         binding.lifecycleOwner = this
         runViewModel()
-        weatherViewModel.errorMessage.observe(this,{
-            Toast.makeText(this,it,Toast.LENGTH_SHORT).show()
+        weatherViewModel.errorMessage.observe(this, {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             Timber.d(it)
         })
         binding.swipeRefresh.setOnRefreshListener {
-           weatherViewModel.getCurrentWeather()
+            weatherViewModel.getCurrentWeather()
         }
     }
-    private fun runViewModel(){
+
+    private fun runViewModel() {
         weatherViewModel.getDataById().observe(this, {
             weatherViewModel.setDataAll(it)
         })
-        weatherViewModel.loadingData.observe(this,{
-            binding.swipeRefresh.isRefreshing=it
+        weatherViewModel.loadingData.observe(this, {
+            binding.swipeRefresh.isRefreshing = it
         })
         weatherViewModel.getCurrentWeather()
-        logCat("Success","Run ViewModel")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding.viewModel
+        logCat("Success", "Run ViewModel")
     }
 }

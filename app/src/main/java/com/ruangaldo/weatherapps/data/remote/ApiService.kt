@@ -1,7 +1,7 @@
 package com.ruangaldo.weatherapps.data.remote
 
-import com.ruangaldo.weatherapps.data.model.*
-import io.reactivex.Observable
+import com.ruangaldo.weatherapps.data.model.CurrentWeatherMsg
+import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,5 +10,5 @@ interface ApiService {
     fun getCurrentWeather(
         @Query("id") city: String,
         @Query("appid") app_id: String
-    ): Observable<CurrentWeatherMsg>
+    ): Flowable<CurrentWeatherMsg>
 }
