@@ -32,6 +32,6 @@ Weather Apps is Simple Android weather application
 - Clone this repository to AndroidStudioProjects folder in your user folder. Ex: $:\Users\YourUser\AndroidStudioProjects\.
 - Run the apps with emulator or real device. and show like below
 
-[![image](https://media.giphy.com/media/HUhxMlOzuspsBe5Nn0/giphy.gif)
+![image](https://media.giphy.com/media/HUhxMlOzuspsBe5Nn0/giphy.gif)
 
 
